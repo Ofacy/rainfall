@@ -1,0 +1,36 @@
+#include <cstdlib>
+#include <cstring>
+
+class N {
+private:
+	char _buffer[100];
+	int _number;
+public:
+	N(int num) {
+		this->_number = num;
+	}
+
+	void setAnnotation(char *annotation) {
+		memcpy(this->_buffer, annotation, strlen(annotation));
+	}
+
+	virtual int operator+(N &other) {
+		return this->_number + other._number;
+	}
+
+	virtual int operator-(N &other) {
+		return this->_number - other._number;
+	}
+};
+
+int main(int argc, char *argv[]) {
+	if (argc < 2) {
+		exit(1);
+	}
+
+	N *instance1 = new N(5);
+	N *instance2 = new N(6);
+	instance1->setAnnotation(argv[1]);
+	return (*instance1) + (*instance2);
+}
+
