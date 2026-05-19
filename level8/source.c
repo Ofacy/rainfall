@@ -25,7 +25,7 @@ int main(int argc, const char **argv, const char **envp)
       service = (int)strdup(v6);
     if ( !memcmp(s, "login", 5) )
     {
-      if (auth)
+      if (((int *)auth)[8])
         system("/bin/sh");
       else
         fwrite("Password:\n", 1, 10, stdout);
